@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import MovieCard from "./components/MovieCard";
-const API_URL = `https://www.omdbapi.com?apikey=${process.env.REACT_APP_API_KEY}`;
+const API_URL = "https://www.omdbapi.com?apikey=ec648708";
 
 function App() {
   const [movies, setMovies] = useState([]);
