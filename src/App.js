@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import MovieCard from "./components/MovieCard";
 const API_URL = `https://www.omdbapi.com?apikey=${process.env.REACT_APP_API_KEY}`;
@@ -7,17 +7,21 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    getMoviesData();
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   getMoviesData();
+  //   // eslint-disable-next-line
+  // }, []);
 
   const getMoviesData = async (e) => {
     e.preventDefault();
     const url = `${API_URL}&s=${search}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    setMovies(data.Search);
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setMovies(data.Search);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -35,7 +39,7 @@ function App() {
       {movies?.length > 0 && (
         <div className="container">
           {movies.map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} key={movie.imdbID} />
           ))}
         </div>
       )}
