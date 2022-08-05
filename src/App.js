@@ -29,7 +29,7 @@ function App() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button>Go</button>
+        <button className="search-button">GO</button>
       </form>
 
       {movies?.length > 0 && (
